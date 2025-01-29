@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Play, Users, MessageSquare, Video } from 'lucide-react';
 import './LandingPage.css';
+import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const navigate = useNavigate();
 
     const features = [
         {
@@ -37,7 +39,7 @@ const LandingPage = () => {
                     <div className="nav-links">
                         <a href="#features" className="nav-link">Features</a>
                         <a href="#pricing" className="nav-link">Pricing</a>
-                        <button className="primary-button">Get Started</button>
+                        <button className="primary-button" onClick={navigate('/signup')}>Get Started</button>
                     </div>
 
                     {/* Mobile menu button */}
@@ -72,7 +74,7 @@ const LandingPage = () => {
                         Start streaming your content with our professional platform. High quality, low latency, and reliable streaming service for content creators.
                     </p>
                     <div className="hero-cta">
-                        <button className="primary-button large">Start Streaming</button>
+                        <button className="primary-button large" onClick={navigate('/login')}>Start Streaming</button>
                     </div>
                 </div>
             </div>
