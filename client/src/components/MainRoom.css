@@ -1,0 +1,321 @@
+:root {
+    --primary-color: #6366F1;
+    --primary-hover: #4F46E5;
+    --background-dark: #0F172A;
+    --surface-dark: #1E293B;
+    --surface-darker: #0F172A;
+    --text-primary: #E2E8F0;
+    --text-secondary: #94A3B8;
+    --accent-glow: rgba(99, 102, 241, 0.5);
+    --danger-color: #FF5050;
+    --danger-hover: #FF3333;
+    --success-color: #22C55E;
+    --transition-speed: 0.3s;
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+.room-dashboard {
+    min-height: 100vh;
+    background-color: var(--background-dark);
+    color: var(--text-primary);
+}
+
+/* Navigation Styles */
+.room-nav {
+    background-color: rgba(30, 41, 59, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 0.75rem 1rem;
+}
+
+.nav-content {
+    max-width: 1920px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all var(--transition-speed);
+}
+
+.menu-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.brand-icon {
+    color: var(--primary-color);
+}
+
+.brand-text {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.action-button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all var(--transition-speed);
+}
+
+.action-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.create-room-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all var(--transition-speed);
+}
+
+.create-room-button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+/* Main Container */
+.room-container {
+    display: grid;
+    grid-template-columns: minmax(200px, 20%) 1fr minmax(300px, 25%);
+    gap: 1px;
+    background-color: var(--border-color);
+    height: calc(100vh - 4rem);
+}
+
+/* Members Panel */
+.members-panel {
+    background-color: var(--surface-darker);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.participant-count {
+    background-color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+}
+
+.members-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Stream Container */
+.stream-container {
+    background-color: var(--surface-dark);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.main-stream-window {
+    flex: 1;
+    background-color: var(--surface-darker);
+    margin: 1rem;
+    border-radius: 0.5rem;
+}
+
+.streams-grid {
+    height: 150px;
+    background-color: var(--surface-darker);
+    margin: 0 1rem;
+    border-radius: 0.5rem;
+}
+
+.stream-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1rem;
+    background-color: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(8px);
+    margin: 1rem;
+    border-radius: 0.5rem;
+}
+
+.control-button {
+    background-color: var(--surface-darker);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.control-button:hover {
+    background-color: var(--surface-dark);
+    color: var(--text-primary);
+}
+
+.control-button.active {
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+    border-color: var(--primary-color);
+}
+
+.leave-button {
+    background-color: var(--danger-color);
+    border: none;
+    color: var(--text-primary);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.leave-button:hover {
+    background-color: var(--danger-hover);
+    transform: translateY(-2px);
+}
+
+.join-stream-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--success-color);
+    color: var(--text-primary);
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.join-stream-button:hover {
+    transform: translate(-50%, -55%);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+/* Chat Panel */
+.chat-panel {
+    background-color: var(--surface-darker);
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.chat-form {
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.chat-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: var(--surface-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    color: var(--text-primary);
+    transition: all var(--transition-speed);
+}
+
+.chat-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .room-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr auto;
+    }
+
+    .members-panel,
+    .chat-panel {
+        position: fixed;
+        top: 4rem;
+        bottom: 0;
+        width: 300px;
+        z-index: 20;
+        transform: translateX(-100%);
+        transition: transform var(--transition-speed);
+    }
+
+    .chat-panel {
+        right: 0;
+        transform: translateX(100%);
+    }
+
+    .members-panel.active,
+    .chat-panel.active {
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 640px) {
+    .nav-content {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .stream-controls {
+        flex-wrap: wrap;
+    }
+
+    .control-button,
+    .leave-button {
+        flex: 1;
+        min-width: 80px;
+    }
+}
