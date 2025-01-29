@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles/main.css";
-import "./Room.css";
+import "./MainRoom.css";
 
 const Room = () => {
     return (
