@@ -30,8 +30,10 @@ const Room = () => {
         }
 
         // Redirect to the room
-        navigate(`/mroom?room=${inviteCode}`);
+        // navigate(`/mroom?room=${inviteCode}`);
+        window.location.replace('http://127.0.0.1:5502/room.html?room=sdfghj')
     };
+
 
     return (
         <div>
