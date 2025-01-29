@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import Product from "../models/form.model.js";
-import bcrypt from 'bcrypt';
 
 const createUsers = async (req, res) => {
     const { name, email, password, confirmpassword } = req.body;

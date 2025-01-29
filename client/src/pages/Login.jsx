@@ -38,6 +38,7 @@ const Login = () => {
             }
             const data = await res.json();
             alert(`Login successful! Welcome, ${data.name}`);
+            window.location.replace('http://127.0.0.1:5502/index.html')
         } catch (err) {
             console.error("Error during sign-up:", err);
             alert("Something went wrong. Please try again.");
