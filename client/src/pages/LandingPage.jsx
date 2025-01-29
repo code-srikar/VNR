@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Play, Users, MessageSquare, Video } from 'lucide-react';
 import './LandingPage.css';
+import { useNavigate } from 'react-router-dom';
+import SignUp from './Signup';
 
 const LandingPage = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+    const navigate = useNavigate();
     const features = [
         {
             title: "High Quality Streaming",
@@ -22,6 +24,9 @@ const LandingPage = () => {
             icon: <Users className="feature-icon" />
         }
     ];
+    const handleStarted = () => {
+        navigate('/signup')
+    }
 
     return (
         <div className="landing-container">
@@ -30,14 +35,14 @@ const LandingPage = () => {
                 <div className="nav-content">
                     <div className="nav-logo">
                         <Play className="logo-icon" />
-                        <span className="logo-text">StreamApp</span>
+                        <span className="logo-text" onClick={navigate('/')}>DigiPlay</span>
                     </div>
 
                     {/* Desktop Navigation */}
                     <div className="nav-links">
                         <a href="#features" className="nav-link">Features</a>
                         <a href="#pricing" className="nav-link">Pricing</a>
-                        <button className="primary-button">Get Started</button>
+                        <button className="primary-button" onClick={handleStarted}>Get Started</button>
                     </div>
 
                     {/* Mobile menu button */}
@@ -56,7 +61,7 @@ const LandingPage = () => {
                     <div className="mobile-menu">
                         <a href="#features" className="mobile-link">Features</a>
                         <a href="#pricing" className="mobile-link">Pricing</a>
-                        <button className="mobile-button">Get Started</button>
+                        <button className="mobile-button" onClick={handleStarted}>Get Started</button>
                     </div>
                 )}
             </nav>
@@ -72,7 +77,7 @@ const LandingPage = () => {
                         Start streaming your content with our professional platform. High quality, low latency, and reliable streaming service for content creators.
                     </p>
                     <div className="hero-cta">
-                        <button className="primary-button large">Start Streaming</button>
+                        <button className="primary-button large" onClick={handleStarted}>Start Streaming</button>
                     </div>
                 </div>
             </div>

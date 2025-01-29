@@ -5,10 +5,10 @@ import './SignUp.css';
 const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({
-        username: '',
+        name: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmpassword: ''
     });
 
     const handleChange = (e) => {
@@ -19,9 +19,34 @@ const SignUp = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
+        const { name, email, password, confirmpassword } = formData;
+        if (password !== confirmpassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+        try {
+            const res = await fetch('http://localhost:3000/digiplay/signup', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ name, email, password, confirmpassword }),
+            });
+
+            if (!res.ok) {
+                const errorData = await res.json();
+                alert(`Error: ${errorData.message}`);
+                return;
+            }
+
+            const data = await res.json();
+            alert(`Sign-up successful! Welcome, ${data.name}`);
+        } catch (err) {
+            console.error("Error during sign-up:", err);
+            alert("Something went wrong. Please try again.");
+        }
     };
 
     return (
@@ -30,7 +55,7 @@ const SignUp = () => {
                 <div className="nav-content">
                     <div className="nav-brand">
                         <Play size={32} className="brand-icon" />
-                        <span className="brand-text">StreamApp</span>
+                        <span className="brand-text">DigiPlay</span>
                     </div>
                 </div>
             </nav>
@@ -44,15 +69,15 @@ const SignUp = () => {
 
                     <form onSubmit={handleSubmit} className="signup-form">
                         <div className="input-field">
-                            <label htmlFor="username">Username</label>
+                            <label htmlFor="name">Username</label>
                             <div className="input-wrapper">
                                 <User className="field-icon" />
                                 <input
                                     type="text"
-                                    id="username"
-                                    name="username"
+                                    id="name"
+                                    name="name"
                                     placeholder="Enter your username"
-                                    value={formData.username}
+                                    value={formData.name}
                                     onChange={handleChange}
                                     required
                                 />
@@ -99,15 +124,15 @@ const SignUp = () => {
                         </div>
 
                         <div className="input-field">
-                            <label htmlFor="confirmPassword">Confirm Password</label>
+                            <label htmlFor="confirmpassword">Confirm Password</label>
                             <div className="input-wrapper">
                                 <Lock className="field-icon" />
                                 <input
                                     type={showPassword ? "text" : "password"}
-                                    id="confirmPassword"
-                                    name="confirmPassword"
+                                    id="confirmpassword"
+                                    name="confirmpassword"
                                     placeholder="Confirm your password"
-                                    value={formData.confirmPassword}
+                                    value={formData.confirmpassword}
                                     onChange={handleChange}
                                     required
                                 />

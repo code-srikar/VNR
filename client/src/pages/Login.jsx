@@ -18,9 +18,30 @@ const Login = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Login form submitted:', formData);
+        const { email, password } = formData;
+        try {
+            const res = await fetch('http://localhost:3000/digiplay/signup/login', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            if (!res.ok) {
+                const errorData = await res.json();
+                alert(`Error: ${errorData.message}`);
+                return;
+            }
+            const data = await res.json();
+            alert(`Login successful! Welcome, ${data.name}`);
+        } catch (err) {
+            console.error("Error during sign-up:", err);
+            alert("Something went wrong. Please try again.");
+        }
     };
 
     return (
@@ -29,7 +50,7 @@ const Login = () => {
                 <div className="nav-content">
                     <div className="nav-brand">
                         <Play size={32} className="brand-icon" />
-                        <span className="brand-text">StreamApp</span>
+                        <span className="brand-text">DigiPlay</span>
                     </div>
                 </div>
             </nav>
